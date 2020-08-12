@@ -15,6 +15,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Linking,
+  Platform,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import LinearGradient from 'react-native-linear-gradient';
@@ -118,7 +119,7 @@ const height_image = height * 0.5 * 0.5;
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#fff',
   },
   wrapper: {
     flex: 1,
@@ -128,7 +129,15 @@ var styles = StyleSheet.create({
   image_container: {
     width: height_image,
     height: height_image,
-    marginTop: height_image / 3,
+
+    ...Platform.select({
+      ios: {
+        marginTop: height_image / 3,
+      },
+      android: {
+        marginTop: height_image / 5,
+      },
+    }),
   },
   image: {
     width: '90%',

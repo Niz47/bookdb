@@ -55,8 +55,8 @@ const SearchBook = (props) => {
 
   const onSearchStoreItems = (textInput) => {
     setInput(textInput);
-    console.log('input text >>>>>>>> ');
-    console.log(input);
+    // console.log('input text >>>>>>>> ');
+    // console.log(input);
   };
 
   return (
@@ -64,7 +64,11 @@ const SearchBook = (props) => {
       <View style={styles.section}>
         <TextInput
           placeholder="Search.."
-          style={{flex: 1, marginLeft: 10}}
+          style={{
+            flex: 1,
+            marginLeft: 10,
+            padding: Platform.OS === 'android' ? 2 : 8,
+          }}
           value={input}
           onChangeText={onSearchStoreItems}
         />
@@ -84,11 +88,17 @@ const styles = StyleSheet.create({
   section: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 5,
+    paddingVertical: 4,
     paddingHorizontal: 10,
     borderRadius: 100,
     backgroundColor: '#f2f2f2',
     marginTop: 10,
+
+    ...Platform.select({
+      android: {
+        marginBottom: -5,
+      },
+    }),
   },
 });
 

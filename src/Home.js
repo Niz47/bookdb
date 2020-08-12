@@ -10,6 +10,7 @@ import {
   Text,
   ImageBackground,
   Dimensions,
+  Platform,
 } from 'react-native';
 import ScrollableTabView, {
   DefaultTabBar,
@@ -47,16 +48,32 @@ const width = Dimensions.get('screen').width;
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#fff',
   },
   header: {
-    marginTop: 20,
     position: 'absolute',
+
+    ...Platform.select({
+      ios: {
+        marginTop: 20,
+      },
+      android: {
+        marginTop: -13,
+      },
+    }),
   },
   tabber: {
     flex: 1,
-    marginTop: width * 0.3,
     paddingHorizontal: 30,
+
+    ...Platform.select({
+      ios: {
+        marginTop: width * 0.3,
+      },
+      android: {
+        marginTop: width * 0.3 - 25,
+      },
+    }),
   },
   imagebg: {
     width: width * 0.4,
